@@ -1,0 +1,45 @@
+﻿@model List<PropertyViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<a class="btn btn-primary" asp-action="Create" asp-controller="Property">ملک جدید</a>
+<table class="table" dir="rtl">
+    <thead>
+        <tr>
+
+            <th>شماره ملک</th>
+            <th>متراژ</th>
+            <th>موقعیت</th>
+            <th>نام و فامیلی مالک</th>
+
+            <th>عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+
+            <td>@item.Number</td>
+
+
+            <td>@item.Area</td>
+            @if (item.PropertyLocation == Enums.PropertyLocation.North)
+            {
+                <td>شمالی</td>
+            }
+            else
+            {
+                <td>جنوبی</td>}
+
+            <td>@item.FullName</td>
+            <td><a class="btn btn-warning" asp-action="Edit" asp-controller="Property" asp-route-id="@item.Id">ویرایش</a>
+                <a class="btn btn-danger" asp-action="Delet" asp-controller="Property" asp-route-id="@item.Id">حذف</a></td>
+           
+        </tr>
+        }
+
+    </tbody>
+</table>
+

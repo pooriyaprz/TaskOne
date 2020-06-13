@@ -1,0 +1,57 @@
+﻿@model PropertyViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+
+<div class="container">
+    <form asp-action="EditPut" asp-controller="Property">
+        <input type="hidden" asp-for="Id" />
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <label>شماره ملک</label>
+                <input asp-for="Number" type="text" class="form-control" />
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <label>متراژ ملک</label>
+                <input asp-for="Area" type="number" class="form-control" />
+            </div>
+
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-4 col-md-4 ">
+                <label>موقعیت ملک</label>
+                <select class=" form-control" style="width:100%" asp-for="PropertyLocation" asp-items="Html.GetEnumSelectList<Enums.PropertyLocation>()">
+                    <option selected="selected" value="">انتخاب کنید</option>
+
+                </select>
+            </div>
+            <div class="col-sm-4 col-md-4 ">
+                <label>انتخاب مالک</label>
+                <select class=" form-control" style="width:100%" asp-for="OwnerId">
+                    <option selected="selected" value="">مالک را انتخاب کنید</option>
+                    @foreach (var item in ViewBag.OwnerList as IEnumerable<OwnerViewModel>)
+                    {
+                        <option value="@item.Id">@item.FullName</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-8 col-md-8">
+                <label>آدرس</label>
+                <textarea asp-for="Address" class="form-control"></textarea>
+            </div>
+
+
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-8 col-md-8">
+                <button type="submit" class="btn btn-primary ">ویرایش</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
