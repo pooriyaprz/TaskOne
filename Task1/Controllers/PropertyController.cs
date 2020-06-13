@@ -65,7 +65,7 @@ namespace Task1.Controllers
             return RedirectToAction("Index");
         }
         public IActionResult Delet(int id)
-        {
+        {//
             if (id != 0)
             {
                 var property = _unitOfWork.Properties.Get(id);
